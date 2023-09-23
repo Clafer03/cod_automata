@@ -21,6 +21,19 @@ int main()
 						{2,1}
 	                   };
 
+
+    /**
+     * FALTARIA HACERLO DINAMICO
+     * ingreso de matriz
+     * ingreso de alfabeto
+     * ingreso de estados I y F
+     * ingreso de cadena
+    */
+    
+    cout << "Estado inicial : q" << eI << "\n";
+    cout << "Estado final : q" << eF << "\n";
+    cout << "Cadena : " << c1 << "\n";
+
     for(int i=0; i<c1.length();i++)
     {
         if(c1[i]=='1'||c1[i]=='0')
