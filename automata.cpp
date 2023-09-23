@@ -5,11 +5,11 @@ using namespace std;
 
 int main()
 {
+	string c1 = "111001";
     int n;
     int num;
-	string c1 = "01";
     int eI = 0;
-    int eF = 1;
+    int eF = 2;
     int eN = 0;
 	int alfabeto[] = {0,1};	
 	int transicion[] = {0,1,2};
@@ -17,7 +17,7 @@ int main()
 	int h = GetSize(alfabeto);
 	int matriz[a][h] = {
 						{2,0},
-						{1,},
+						{1,1},
 						{2,1}
 	                   };
 
@@ -41,10 +41,9 @@ int main()
                 }
                 n = matriz[eI][eN];
             }    
-            cout << num << ", ";          
-            cout << n;  
+            cout << num << "   ";          
+            cout << "q"<< n;  
             cout << "(" <<eI << ","<< eN << ")"<< "\n";
-            cout << endl;
         }
         if(n != eI)
         {
