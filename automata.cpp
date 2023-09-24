@@ -6,8 +6,7 @@ using namespace std;
 int main()
 {
 	string c1 = "111001";
-    int n;
-    int num;
+    int n, num , tam, trans;
     int eI = 0;
     int eF = 2;
     int eN = 0;
@@ -33,6 +32,36 @@ int main()
     cout << "Estado inicial : q" << eI << "\n";
     cout << "Estado final : q" << eF << "\n";
     cout << "Cadena : " << c1 << "\n";
+
+    //Ingreso de alfabeto------------------------
+    cout << "Ingrese el tamaño del alfabeto: ";
+    cin >> tam;
+    cout << "Ingrese el alfabeto: ";
+    for(int i = 0; i<tam; i++)
+    {    
+        cin >> alfabeto[i];
+    }
+
+    //Ingreso de transiciones------------------------
+    cout << "Ingrese el número de transiciones: ";
+    cin >> trans;
+    cout << "Ingrese las transiciones: ";
+    for(int i = 0; i<trans; i++)
+    {    
+        cin >> transicion[i];
+    }
+
+
+    //Ingreso de matriz
+    for(int i = 0; i<a; i++)
+    {
+        for(int j = 0; j<h; j++)
+        {
+
+        }
+    }
+
+
 
     for(int i=0; i<c1.length();i++)
     {
