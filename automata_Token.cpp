@@ -2,13 +2,12 @@
 #include <vector>
 using namespace std;
 #define GetSize(array_enteros) (sizeof(array_enteros)/sizeof(*(array_enteros)))
+const int nul = -1;
 
 int main()
 {
 
-    vector<int> num;
-    vector<char> chiar;
-    char alfabeto2[] = {'l','d','.','o'};
+    char alfabeto2[] = {0,1,2,3}; // {'l','d','.','o'}
 	int transicion[] = {0,1,2,3,4,5,6,7};
     int eF[] = {2,4,7};
     int alf_it;
@@ -18,7 +17,16 @@ int main()
     int eI=0, eN = 0;
 	int a = GetSize(transicion);
 	int h = GetSize(alfabeto2);
-	int matriz[a][h]; 
+	int matriz[a][h]= {
+                        {1,3,nul,nul},
+                        {1,1,2,nul},
+                        {nul,nul,nul,nul},
+                        {nul,3,4,5},
+                        {nul,nul,nul,nul},
+                        {nul,6,nul,nul},
+                        {nul,6,7,nul},
+                        {nul,nul,nul,nul}
+                        };
 
     /**
      * ingreso de matriz            ✓
@@ -83,20 +91,17 @@ int main()
 
     cout << endl;
 
-    for(int i=0; i<c1.length();i++)
+    int i;
+    for(i=0; i<c1.length();i++)
     {
-            for (int j = 0; j < GetSize(alfabeto2); j++) // alfabeto = {0(l),1(d),2(o),3(.)} ???
-            {
-                for (char c : c1) //33.3
-                {
-                    if (isdigit(c))         {alf_it = 1;} // 3 3 3  --> d
-                    else if (c == '.')      {alf_it = 3;} // .      --> .
-                    else if (isalpha(c))    {alf_it = 0;} // a      --> l   
-                    else                    {alf_it = 4;} // _*?    --> otro
-                }
+            if (isdigit(c1[i]))         {alf_it = 1;} // 3 3 3  --> d
+            else if (c1[i]== '.')       {alf_it = 3;} // .      --> .
+            else if (isalpha(c1[i]))    {alf_it = 0;} // a      --> l   
+            else                        {alf_it = 2;} // _*?    --> otro
 
-                num = c1[i] - '0'; //convierte el caracter a num ---  1110010
-                if (num == alfabeto2[j]) //datatype == int|char  ????
+            for (int j = 0; j < GetSize(alfabeto2); j++) // alfabeto2 = {0(l),1(d),2(o),3(.)} 
+            {
+                if (alf_it == alfabeto2[j]) //comprobamos si las alf_it se encuentran en el alfabeto2
                 {
                     eN = j;
                 }
@@ -109,7 +114,14 @@ int main()
                 }
                 n = matriz[eI][eN];
             }    
-            cout << num << "   ";          
+        if(n == -1)
+        {
+            alf_it = 2;
+            eN = alf_it;
+            matriz[eI][eN];
+            n = matriz[eI][eN];
+        }
+            cout << c1[i] << "   ";          
             cout << "q"<< n;  
             cout << "(" <<eI << ","<< eN << ")"<< "\n";
 
@@ -117,14 +129,24 @@ int main()
         {
             eI = n;
         }
+        for(int l = 0; l< GetSize(eF); l++)
+        {
+            if(n == eF[l])
+            {
+                cout << "CORTA!!!" << endl;
+                eI = 0;
+                i-=1;
+            }
+        }
     }
-        if(n == eF)
+
+        /*if(n == eF)
         {
             cout << "ACEPTADO!!!" << endl;
         }
         else{
              cout << "NO ACEPTADO!!!" << endl;
-        }
+        }*/
 }
 
 /**
@@ -139,7 +161,16 @@ int main()
     * 7|-(7,0)|-(7,1)|-(7,2)|-(7,3)
     * 
     * 33.3 => <REAL>
-    * 
+    *  = {
+                        {1,3,,},
+                        {1,1,2,},
+                        {,,,},
+                        {,3,4,5},
+                        {,,,},
+                        {,6,,},
+                        {,6,7,},
+                        {,,,}
+        };
     * 
     *   vector<int> num;
         vector<char> car;
