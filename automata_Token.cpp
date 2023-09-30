@@ -1,16 +1,21 @@
 #include <iostream>
-
+#include <vector>
 using namespace std;
 #define GetSize(array_enteros) (sizeof(array_enteros)/sizeof(*(array_enteros)))
 
 int main()
 {
-    string c1;
-    int n, num , tam, trans;
-    int eI=0, eN = 0;
+
+    vector<int> num;
+    vector<char> chiar;
     char alfabeto2[] = {'l','d','.','o'};
 	int transicion[] = {0,1,2,3,4,5,6,7};
     int eF[] = {2,4,7};
+    int alf_it;
+//////////////////////////////////////////////////
+    string c1; //33.3 
+    int n, num , tam, trans;
+    int eI=0, eN = 0;
 	int a = GetSize(transicion);
 	int h = GetSize(alfabeto2);
 	int matriz[a][h]; 
@@ -80,12 +85,18 @@ int main()
 
     for(int i=0; i<c1.length();i++)
     {
-        if(c1[i]=='1'||c1[i]=='0')
-        {
-            for (int j = 0; j < GetSize(alfabeto2); j++)
+            for (int j = 0; j < GetSize(alfabeto2); j++) // alfabeto = {0(l),1(d),2(o),3(.)} ???
             {
+                for (char c : c1) //33.3
+                {
+                    if (isdigit(c))         {alf_it = 1;} // 3 3 3  --> d
+                    else if (c == '.')      {alf_it = 3;} // .      --> .
+                    else if (isalpha(c))    {alf_it = 0;} // a      --> l   
+                    else                    {alf_it = 4;} // _*?    --> otro
+                }
+
                 num = c1[i] - '0'; //convierte el caracter a num ---  1110010
-                if (num == alfabeto2[j]) 
+                if (num == alfabeto2[j]) //datatype == int|char  ????
                 {
                     eN = j;
                 }
@@ -101,7 +112,7 @@ int main()
             cout << num << "   ";          
             cout << "q"<< n;  
             cout << "(" <<eI << ","<< eN << ")"<< "\n";
-        }
+
         if(n != eI)
         {
             eI = n;
@@ -116,13 +127,8 @@ int main()
         }
 }
 
-/*
-	{2,0},
-	{1,1},
-	{2,1}
-*/
 /**
-    * f|l     |d     |o     |.
+    * f|l  (0)|d  (1)|o  (2)|.  (3) -->alf_it
     * 0|1(0,0)|3(0,1)|-(0,2)|-(0,3)
     * 1|1(1,0)|1(1,1)|2(1,2)|-(1,3)
     * 2|-(2,0)|-(2,1)|-(2,2)|-(2,3)
@@ -165,6 +171,11 @@ int main()
         }
     * 
     * 
+    *   for (char c : c1) //33.3
+        {
+            if (isdigit(c)) { num.push_back(c - '0');} // 3 3 3 --> d
+            else if (isalpha(c)) { chiar.push_back(c);} // . --> . | a --> l   ???
+        }
     * 
 */
 
